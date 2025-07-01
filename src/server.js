@@ -1,7 +1,7 @@
 import { getEnvVar } from './utils/getEnvVars.js';
 import express from 'express';
 import cors from 'cors';
-// import pino from 'pino-http';
+import pino from 'pino-http';
 import cookieParser from 'cookie-parser';
 import router from './routers/index.js';
 import { notFoundHandler } from './middlewares/notFoundHandler.js';
@@ -15,13 +15,13 @@ export const setupServer = () => {
   app.use(express.json({ type: 'application/json' }));
   app.use(cors());
   app.use(cookieParser());
-  // app.use(pino({ transport: { target: 'pino-pretty' } }));
+  app.use(pino({ transport: { target: 'pino-pretty' } }));
 
   app.use('/api', router);
 
   // app.use('/api-docs', swaggerDocs())
 
-  app.use('*', notFoundHandler);
+  app.use('*splat', notFoundHandler);
   app.use(errorHandler);
 
   app.listen(PORT, () => {
