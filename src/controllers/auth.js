@@ -1,4 +1,9 @@
-import { loginUser, registerUser } from '../services/auth.js';
+import {
+  logautUser,
+  loginUser,
+  registerUser,
+  userInfo,
+} from '../services/auth.js';
 
 export const registerUserController = async (req, res) => {
   const user = await registerUser(req.body);
@@ -25,5 +30,27 @@ export const loginUserController = async (req, res) => {
       accessToken: sessionUser.accessToken,
       id: sessionUser.userId,
     },
+  });
+};
+
+export const logoutUserController = async (req, res) => {
+  // console.log(req.headers.authorization.split(' ')[1]);
+  const token = req.headers.authorization.split(' ')[1];
+  if (token) {
+    await logautUser(token);
+  }
+
+  res.status(204).send();
+};
+
+export const userInfoController = async (req, res) => {
+  const token = req.headers.authorization.split(' ')[1];
+  // console.log(token);
+  if (!token) return;
+  const user = await userInfo(token);
+
+  res.json({
+    status: 200,
+    data: { name: user.name, email: user.email },
   });
 };

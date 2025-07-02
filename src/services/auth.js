@@ -63,3 +63,15 @@ export const loginUser = async (payload) => {
     accessTokenValidUntil: new Date(Date.now() + ONE_DAY),
   });
 };
+
+export const logautUser = async (token) => {
+  const session = await SessionsCollection.findOne({ accessToken: token });
+  // console.log(session);
+  await SessionsCollection.deleteOne({ _id: session._id });
+};
+
+export const userInfo = async (token) => {
+  const session = await SessionsCollection.findOne({ accessToken: token });
+  // console.log(session);
+  return session;
+};
