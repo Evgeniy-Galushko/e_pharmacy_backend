@@ -22,11 +22,14 @@ export const registerUser = async (payload) => {
     password: encryptedPassword,
   });
 
+  console.log(newUser);
+
   return await SessionsCollection.create({
     name: newUser.name,
     email: newUser.email,
     userId: newUser._id,
     phoneNumber: newUser.phoneNumber,
+    order: newUser.order,
     accessToken,
     accessTokenValidUntil: new Date(Date.now() + ONE_DAY),
   });
