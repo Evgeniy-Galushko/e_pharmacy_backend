@@ -1,26 +1,41 @@
+import createHttpError from 'http-errors';
+import { BasketCollection } from '../db/models/basket.js';
 import { OrderCollection } from '../db/models/order.js';
 import { ProductsCollection } from '../db/models/product.js';
 import { SessionsCollection } from '../db/models/session.js';
 import { UsersCollection } from '../db/models/user.js';
 
-export const listOfOrders = async (token) => {
+export const listOfBasket = async (token) => {
   const session = await SessionsCollection.findOne({ accessToken: token });
-  const user = await UsersCollection.findById(session.userId);
-  const order = user.order;
+  const userId = session.userId;
+  const basket = await BasketCollection.find({ userId: userId });
 
-  return order;
+  return basket;
 };
 
-export const updaateOrder = async (token, idProduct, options) => {
+export const updateBasket = async (token, idProduct, options) => {
   const session = await SessionsCollection.findOne({ accessToken: token });
 
   const product = await ProductsCollection.findOne({ _id: idProduct });
 
-  const user = await UsersCollection.findById(session.userId);
-  user.order.push(product);
-  await user.save();
+  if (!product) {
+    throw createHttpError(404, 'There is no such product');
+  }
 
-  const newOrder = await UsersCollection.findById(session.userId);
+  const userId = session.userId;
+  const availabilityInCart = await BasketCollection.findOne({
+    userId,
+    _id: idProduct,
+  });
 
-  return newOrder;
+  if (availabilityInCart) {
+    throw createHttpError(404, 'Product added to cart');
+  }
+  if (!availabilityInCart) {
+    const basket = await BasketCollection.create({
+      ...product.toObject(),
+      userId: userId,
+    });
+    return basket;
+  }
 };
