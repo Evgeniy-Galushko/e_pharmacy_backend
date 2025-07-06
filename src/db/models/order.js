@@ -9,7 +9,7 @@ const orderSchema = new Schema(
     price: { type: String, required: true },
     status: { type: String, required: true },
     order_date: { type: String, required: true },
-    userId: { type: String, required: true },
+    userId: { type: Schema.Types.ObjectId, ref: 'users' },
   },
   {
     timestamps: true,

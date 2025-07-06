@@ -1,6 +1,10 @@
-import { listOfBasket, updateBasket } from '../services/order.js';
+import {
+  listOfBasket,
+  orderProcessing,
+  updateBasket,
+} from '../services/order.js';
 
-export const listOfOrdersController = async (req, res) => {
+export const listOfBasketController = async (req, res) => {
   const token = req.headers.authorization.split(' ')[1];
   const basket = await listOfBasket(token);
 
@@ -11,16 +15,28 @@ export const listOfOrdersController = async (req, res) => {
   });
 };
 
-export const updateOrderController = async (req, res) => {
+export const updateBasketController = async (req, res) => {
   const token = req.headers.authorization.split(' ')[1];
   const { id } = req.query;
-  const order = await updateBasket(token, id, {
+  const basket = await updateBasket(token, id, {
     upsert: true,
   });
 
   res.status(200).json({
     status: 200,
     message: 'The product has been added to the cart',
+    data: basket,
+  });
+};
+
+export const orderProcessingController = async (req, res) => {
+  const token = req.headers.authorization.split(' ')[1];
+
+  const order = await orderProcessing(req, token);
+
+  res.status(201).json({
+    status: 201,
+    message: 'Your order has been accepted!',
     data: order,
   });
 };

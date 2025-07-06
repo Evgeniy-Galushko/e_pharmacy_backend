@@ -3,7 +3,6 @@ import { BasketCollection } from '../db/models/basket.js';
 import { OrderCollection } from '../db/models/order.js';
 import { ProductsCollection } from '../db/models/product.js';
 import { SessionsCollection } from '../db/models/session.js';
-import { UsersCollection } from '../db/models/user.js';
 
 export const listOfBasket = async (token) => {
   const session = await SessionsCollection.findOne({ accessToken: token });
@@ -38,4 +37,16 @@ export const updateBasket = async (token, idProduct, options) => {
     });
     return basket;
   }
+};
+
+export const orderProcessing = async (payload, token) => {
+  const session = await SessionsCollection.findOne({ accessToken: token });
+  const userId = session.userId;
+
+  const order = await OrderCollection.create({
+    ...payload.body,
+    userId: userId,
+  });
+
+  return order;
 };
