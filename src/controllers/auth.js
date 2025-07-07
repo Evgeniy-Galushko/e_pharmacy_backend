@@ -30,7 +30,7 @@ export const loginUserController = async (req, res) => {
       email: sessionUser.email,
       phoneNumber: sessionUser.phoneNumber,
       accessToken: sessionUser.accessToken,
-      id: sessionUser.userId,
+      userId: sessionUser.userId,
     },
   });
 };
@@ -53,6 +53,7 @@ export const userInfoController = async (req, res) => {
 
   res.json({
     status: 200,
+    message: 'User information',
     data: { name: user.name, email: user.email },
   });
 };

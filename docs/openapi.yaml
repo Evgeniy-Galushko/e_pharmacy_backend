@@ -1,0 +1,44 @@
+openapi: 3.1.0
+info:
+  version: 1.0.0
+  title: e_pharmacy
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  description: Accompanying documentation for working with the backend for a pharmacy.
+tags:
+  - name: pharmacy
+    description: Operations about users.
+  - name: User
+    description: User registration
+servers:
+  - url: http://localhost:3000
+  - url: https://e-pharmacy-backend-34d4.onrender.com
+paths:
+  /api/user/register:
+    post:
+      $ref: ../docs/swagger/paths/auth/postRegister.yaml
+  /api/user/login:
+    post:
+      $ref: ../docs/swagger/paths/auth/postLogin.yaml
+  /api/user/logout:
+    get:
+      $ref: ../docs/swagger/paths/auth/getLogout.yaml
+  /api/user/user-info:
+    get:
+      $ref: ../docs/swagger/paths/auth/getUserInfo.yaml
+  /api/stores/nearest:
+    get:
+      $ref: ../docs/swagger/paths/auth/getNearest.yaml
+  /api/customer-reviews:
+    get:
+      $ref: ../docs/swagger/paths/auth/getReviews.yaml
+  /api/stores:
+    get:
+      $ref: ../docs/swagger/paths/auth/getPharmacyDetails.yaml
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer

@@ -1,0 +1,43 @@
+tags:
+  - User
+summary: Customer reviews
+operationId: reviewsUser
+description: Customer reviews
+security: []
+responses:
+  '200':
+    description: 'information about reviews'
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 200
+            message:
+              type: string
+              example: List of reviews
+            data:
+              type: object
+              required:
+                - _id
+                - name
+                - testimonial
+              properties:
+                _id:
+                  description: 'Id reviews'
+                  type: string
+                  example: '6862a8e511bab2fbbf9eb80a'
+                name:
+                  description: 'Client name'
+                  type: string
+                  example: 'Maria Tkachuk'
+                testimonial:
+                  description: 'Review'
+                  type: string
+                  example: 'I recently used this medical platform to book an appointment with a specialist, and I was impressed by how easy and user-friendly the process was. Highly recommended!'

@@ -1,0 +1,58 @@
+tags:
+  - User
+summary: list of pharmacies with details
+operationId: pharmaciesUser
+description: list of pharmacies with details
+security: []
+responses:
+  '200':
+    description: 'pharmacies with details'
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 200
+            message:
+              type: string
+              example: List of pharmacies with details
+            data:
+              type: object
+              required:
+                - _id
+                - name
+                - address
+                - city
+                - phone
+                - rating
+              properties:
+                _id:
+                  description: 'id pharmacies'
+                  type: string
+                  example: '68655c0c2401a1842bafe745'
+                name:
+                  description: 'Name of the pharmacy'
+                  type: string
+                  example: 'Pharmacy Hope'
+                address:
+                  description: 'Pharmacy address'
+                  type: string
+                  example: 'Shevchenka St, 100'
+                city:
+                  description: 'The city in which the pharmacy is located'
+                  type: string
+                  example: 'Lviv'
+                phone:
+                  description: 'Pharmacy phone number'
+                  type: string
+                  example: '0322-45-67-89'
+                rating:
+                  description: 'pharmacy rating'
+                  type: number
+                  example: 4

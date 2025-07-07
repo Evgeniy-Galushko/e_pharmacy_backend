@@ -1,0 +1,114 @@
+tags:
+  - User
+summary: User registration
+operationId: createUser
+description: User registration
+security: []
+requestBody:
+  content:
+    application/json:
+      schema:
+        type: object
+        required:
+          - name
+          - email
+          - phoneNumber
+          - password
+        properties:
+          name:
+            description: 'user name'
+            type: string
+            example: 'John'
+          email:
+            description: 'user email'
+            type: string
+            example: 'john@gmail.com'
+          phoneNumber:
+            description: 'user phone number'
+            type: string
+            example: '+380991234567'
+          password:
+            description: 'user password'
+            type: string
+            example: '123456_O'
+responses:
+  '201':
+    description: Creates a new user
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 201
+            message:
+              type: string
+              example: 'Successfully registered a user!'
+            data:
+              type: object
+              required:
+                - name
+                - email
+                - userId
+                - phoneNumber
+                - accessToken
+                - accessTokenValidUntil
+                - _id
+              properties:
+                name:
+                  description: 'user name'
+                  type: string
+                  example: 'John'
+                email:
+                  description: 'user email'
+                  type: string
+                  example: 'john@gmail.com'
+                userId:
+                  description: 'userId'
+                  type: string
+                  example: '686b9d9b1cfe706b3e50a805'
+                phoneNumber:
+                  description: 'user phone number'
+                  type: string
+                  example: '+380991234567'
+                accessToken:
+                  description: 'token session'
+                  type: string
+                  example: 'rNRIISIAjWwa8dm0rYNW7x1UrIMuP1TLf6PQ5kGo'
+                accessTokenValidUntil:
+                  description: 'token end of session'
+                  type: string
+                  example: '2025-07-08T10:12:43.444Z'
+                _id:
+                  description: 'session id'
+                  type: string
+                  example: '686b9d9b1cfe706b3e50a807'
+  '409':
+    description: ConflictError
+    content:
+      application/json:
+        schema:
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 409
+            message:
+              type: string
+              example: ConflictError
+            data:
+              type: object
+              required:
+                - message
+              properties:
+                message:
+                  type: string
+                  example: 'Email in use'

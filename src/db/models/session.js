@@ -6,7 +6,6 @@ const sessionsSchema = new Schema(
     email: { type: String, required: true, unique: true },
     userId: { type: Schema.Types.ObjectId, ref: 'users' },
     phoneNumber: { type: String, required: true },
-    order: { type: Array, required: false },
     accessToken: { type: String, required: true },
     accessTokenValidUntil: { type: Date, required: true },
   },

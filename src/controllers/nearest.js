@@ -5,6 +5,8 @@ export const pharmaciesController = async (req, res) => {
   if (!data) return;
 
   res.status(200).json({
+    status: 200,
+    message: 'List of pharmacies with details',
     data: data,
   });
 };
@@ -14,6 +16,8 @@ export const nearestController = async (req, res) => {
   if (!data) return;
 
   res.status(200).json({
+    status: 200,
+    message: 'List of nearest pharmacies',
     data: data,
   });
 };

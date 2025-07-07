@@ -29,7 +29,6 @@ export const registerUser = async (payload) => {
     email: newUser.email,
     userId: newUser._id,
     phoneNumber: newUser.phoneNumber,
-    order: newUser.order,
     accessToken,
     accessTokenValidUntil: new Date(Date.now() + ONE_DAY),
   });

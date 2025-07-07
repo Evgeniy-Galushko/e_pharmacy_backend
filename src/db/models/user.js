@@ -6,7 +6,6 @@ const usersSchema = new Schema(
     email: { type: String, required: true, unique: true },
     phoneNumber: { type: String, required: true },
     password: { type: String, required: true },
-    order: { type: Array, required: false },
   },
   { timestamps: true, versionKey: false },
 );

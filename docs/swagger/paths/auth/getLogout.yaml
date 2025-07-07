@@ -1,0 +1,35 @@
+tags:
+  - User
+summary: Logging out a user from an account
+operationId: outUser
+description: Logging out a user from an account
+security:
+  - bearerAuth: []
+responses:
+  '204':
+    description: The user is logged out.
+  '401':
+    description: Missing header with authorization token.
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 401
+            message:
+              type: string
+              example: UnauthorizedError
+            data:
+              type: object
+              required:
+                - message
+              properties:
+                message:
+                  type: string
+                  example: 'Session not found'

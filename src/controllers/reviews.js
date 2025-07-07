@@ -5,6 +5,8 @@ export const reviewsController = async (req, res) => {
   if (!data) return;
 
   res.status(200).json({
+    status: 200,
+    message: 'List of reviews',
     data: data,
   });
 };

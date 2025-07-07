@@ -28,7 +28,7 @@ export const productsController = async (req, res) => {
       })
     : res.json({
         status: 200,
-        message: 'Medicines',
+        message: 'List of medicines',
         data: {
           data: products.data,
           page: products.page,
