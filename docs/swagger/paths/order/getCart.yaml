@@ -1,46 +1,13 @@
 tags:
-  - Product
-summary: List of products
-operationId: getProducts
-description: List of products
-security: []
-parameters:
-  - in: query
-    name: page
-    schema:
-      type: integer
-    example: 1
-  - in: query
-    name: perPage
-    schema:
-      type: integer
-    example: 10
-  - in: query
-    name: search
-    schema:
-      type: string
-    example: 'Aspirin'
-  - in: query
-    name: sortOrder
-    schema:
-      type: string
-      enum: ['asc', 'desc']
-      example: 'asc'
-  - in: query
-    name: sortBy
-    schema:
-      type: string
-      example: 'name'
-    description: 'All contact fields can be mentioned. Default value is id'
-  - in: query
-    name: type
-    schema:
-      type: string
-      enum: ['medicine', 'heart', 'head', 'hand', 'leg']
-      example: 'medicine'
+  - Order
+summary: List of items in the cart
+operationId: getCart
+description: List of items in the cart
+security:
+  - bearerAuth: []
 responses:
   '200':
-    description: 'List of medicines'
+    description: 'List of items in the cart'
     content:
       application/json:
         schema:
@@ -55,7 +22,7 @@ responses:
               example: 200
             message:
               type: string
-              example: List of medicines
+              example: 'Order basket'
             data:
               type: object
               required:
@@ -67,6 +34,7 @@ responses:
                 - stock
                 - price
                 - category
+                - userId
               properties:
                 _id:
                   description: 'drug id in mongo'
@@ -100,15 +68,32 @@ responses:
                   description: 'Drug category'
                   type: string
                   example: 'Hand'
-            page:
-              type: number
-              example: 1
-            perPage:
-              type: number
-              example: 10
-            totalItems:
-              type: number
-              example: 11
-            totalPages:
-              type: number
-              example: 2
+                userId:
+                  description: 'User id'
+                  type: string
+                  example: '686bc6852d7d10d847b2e9e9'
+  '401':
+    description: Missing header with authorization token.
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 401
+            message:
+              type: string
+              example: UnauthorizedError
+            data:
+              type: object
+              required:
+                - message
+              properties:
+                message:
+                  type: string
+                  example: 'Session not found'

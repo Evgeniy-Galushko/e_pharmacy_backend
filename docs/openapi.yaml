@@ -7,10 +7,12 @@ info:
     url: http://www.apache.org/licenses/LICENSE-2.0.html
   description: Accompanying documentation for working with the backend for a pharmacy.
 tags:
-  - name: pharmacy
-    description: Operations about users.
   - name: User
     description: User registration
+  - name: Product
+    description: List of medicines
+  - name: Order
+    description: List of items in the cart
 servers:
   - url: http://localhost:3000
   - url: https://e-pharmacy-backend-34d4.onrender.com
@@ -36,7 +38,21 @@ paths:
   /api/stores:
     get:
       $ref: ../docs/swagger/paths/auth/getPharmacyDetails.yaml
-
+  /api/products:
+    get:
+      $ref: ../docs/swagger/paths/product/getProducts.yaml
+  /api/products/:id:
+    get:
+      $ref: ../docs/swagger/paths/product/{id}/get.yaml
+  /api/cart:
+    get:
+      $ref: ../docs/swagger/paths/order/getCart.yaml
+  /api/cart/update:
+    put:
+      $ref: ../docs/swagger/paths/order/putUpdateCart.yaml
+  /api/cart/checkout:
+    post:
+      $ref: ../docs/swagger/paths/order/postOrderProcessing.yaml
 components:
   securitySchemes:
     bearerAuth:

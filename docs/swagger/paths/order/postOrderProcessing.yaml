@@ -1,0 +1,141 @@
+tags:
+  - Order
+summary: Order processing
+operationId: postOrder
+description: Order processing
+security:
+  - bearerAuth: []
+requestBody:
+  content:
+    application/json:
+      schema:
+        type: object
+        required:
+          - photo
+          - name
+          - address
+          - products
+          - price
+          - status
+          - order_date
+        properties:
+          photo:
+            description: 'link to photo'
+            type: string
+            example: 'https://i.imgur.com/1As0akH.png1'
+          name:
+            description: 'Customer name'
+            type: string
+            example: 'Taras Shevchenko'
+          address:
+            description: 'Delivery address'
+            type: string
+            example: 'Khreshchatyk, Bldg. 51, Apt. 137'
+          products:
+            description: 'Product'
+            type: string
+            example: '452'
+          price:
+            description: 'Order price'
+            type: string
+            example: '1890.66'
+          status:
+            description: Order status
+            type: string
+            example: 'Pending'
+          order_date:
+            description: 'Order date'
+            type: string
+            example: 'July 31, 2023'
+responses:
+  '201':
+    description: Creates an order
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - daata
+          properties:
+            status:
+              type: integer
+              example: 201
+            message:
+              type: string
+              example: 'Your order has been accepted!'
+            data:
+              type: object
+              required:
+                - photo
+                - name
+                - address
+                - products
+                - price
+                - status
+                - order_date
+                - userId
+                - _id
+              properties:
+                photo:
+                  description: 'link to photo'
+                  type: string
+                  example: 'https://i.imgur.com/1As0akH.png1'
+                name:
+                  description: 'Customer name'
+                  type: string
+                  example: 'Taras Shevchenko'
+                address:
+                  description: 'Delivery address'
+                  type: string
+                  example: 'Khreshchatyk, Bldg. 51, Apt. 137'
+                products:
+                  description: 'Product'
+                  type: string
+                  example: '452'
+                price:
+                  description: 'Order price'
+                  type: string
+                  example: '1890.66'
+                status:
+                  description: Order status
+                  type: string
+                  example: 'Pending'
+                order_date:
+                  description: 'Order date'
+                  type: string
+                  example: 'July 31, 2023'
+                userId:
+                  description: 'User id'
+                  type: string
+                  example: '686bc6852d7d10d847b2e9e9'
+                _id:
+                  description: 'indefekator in the database'
+                  type: string
+                  example: 686d30d8627aab0e8703f55a
+  '401':
+    description: Missing header with authorization token.
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 401
+            message:
+              type: string
+              example: UnauthorizedError
+            data:
+              type: object
+              required:
+                - message
+              properties:
+                message:
+                  type: string
+                  example: 'Session not found'
