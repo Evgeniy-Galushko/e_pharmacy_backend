@@ -46,6 +46,7 @@ export const orderProcessing = async (payload, token) => {
   const order = await OrderCollection.create({
     ...payload.body,
     userId: userId,
+    status: 'pending',
   });
 
   return order;
