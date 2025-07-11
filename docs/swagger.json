@@ -1444,8 +1444,8 @@
                         },
                         "products": {
                           "description": "Product",
-                          "type": "string",
-                          "example": "452"
+                          "type": "array",
+                          "example": []
                         },
                         "paymentMethod": {
                           "description": "Payment method",
