@@ -1330,24 +1330,30 @@
               "schema": {
                 "type": "object",
                 "required": [
-                  "photo",
                   "name",
+                  "email",
+                  "phoneNumber",
                   "address",
                   "products",
+                  "paymentMethod",
                   "price",
-                  "status",
                   "order_date"
                 ],
                 "properties": {
-                  "photo": {
-                    "description": "link to photo",
-                    "type": "string",
-                    "example": "https://i.imgur.com/1As0akH.png1"
-                  },
                   "name": {
                     "description": "Customer name",
                     "type": "string",
                     "example": "Taras Shevchenko"
+                  },
+                  "email": {
+                    "description": "Client email",
+                    "type": "string",
+                    "example": "john@gmail.com"
+                  },
+                  "phoneNumber": {
+                    "description": "User phone number",
+                    "type": "string",
+                    "example": "+380991234567"
                   },
                   "address": {
                     "description": "Delivery address",
@@ -1356,18 +1362,18 @@
                   },
                   "products": {
                     "description": "Product",
+                    "type": "array",
+                    "example": []
+                  },
+                  "paymentMethod": {
+                    "description": "Payment method",
                     "type": "string",
-                    "example": "452"
+                    "example": "Cash On Delivery"
                   },
                   "price": {
                     "description": "Order price",
                     "type": "string",
                     "example": "1890.66"
-                  },
-                  "status": {
-                    "description": "Order status",
-                    "type": "string",
-                    "example": "Pending"
                   },
                   "order_date": {
                     "description": "Order date",
@@ -1403,26 +1409,33 @@
                     "data": {
                       "type": "object",
                       "required": [
-                        "photo",
                         "name",
+                        "email",
+                        "phoneNumber",
                         "address",
                         "products",
+                        "paymentMethod",
                         "price",
-                        "status",
                         "order_date",
+                        "status",
                         "userId",
                         "_id"
                       ],
                       "properties": {
-                        "photo": {
-                          "description": "link to photo",
-                          "type": "string",
-                          "example": "https://i.imgur.com/1As0akH.png1"
-                        },
                         "name": {
                           "description": "Customer name",
                           "type": "string",
                           "example": "Taras Shevchenko"
+                        },
+                        "email": {
+                          "description": "Client email",
+                          "type": "string",
+                          "example": "john@gmail.com"
+                        },
+                        "phoneNumber": {
+                          "description": "User phone number",
+                          "type": "string",
+                          "example": "+380991234567"
                         },
                         "address": {
                           "description": "Delivery address",
@@ -1434,20 +1447,25 @@
                           "type": "string",
                           "example": "452"
                         },
+                        "paymentMethod": {
+                          "description": "Payment method",
+                          "type": "string",
+                          "example": "Cash On Delivery"
+                        },
                         "price": {
                           "description": "Order price",
                           "type": "string",
                           "example": "1890.66"
                         },
-                        "status": {
-                          "description": "Order status",
-                          "type": "string",
-                          "example": "Pending"
-                        },
                         "order_date": {
                           "description": "Order date",
                           "type": "string",
                           "example": "July 31, 2023"
+                        },
+                        "status": {
+                          "description": "Order status",
+                          "type": "string",
+                          "example": "Pending"
                         },
                         "userId": {
                           "description": "User id",
