@@ -103,8 +103,8 @@ responses:
                   example: 'Khreshchatyk, Bldg. 51, Apt. 137'
                 products:
                   description: 'Product'
-                  type: string
-                  example: '452'
+                  type: array
+                  example: []
                 paymentMethod:
                   description: 'Payment method'
                   type: string
