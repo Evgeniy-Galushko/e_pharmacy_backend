@@ -28,6 +28,7 @@ responses:
                 - _id
                 - name
                 - testimonial
+                - img
               properties:
                 _id:
                   description: 'Id reviews'
@@ -41,3 +42,7 @@ responses:
                   description: 'Review'
                   type: string
                   example: 'I recently used this medical platform to book an appointment with a specialist, and I was impressed by how easy and user-friendly the process was. Highly recommended!'
+                img:
+                  description: 'User photo'
+                  type: string
+                  example: 'https://res.cloudinary.com/dlnpzvvwq/image/upload/v1752670360/Sergey_Rybachok_pjir9c.jpg'
