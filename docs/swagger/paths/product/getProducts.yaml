@@ -36,7 +36,8 @@ parameters:
     name: type
     schema:
       type: string
-      enum: ['medicine', 'heart', 'head', 'hand', 'leg']
+      enum:
+        ['medicine', 'heart', 'head', 'hand', 'leg', 'skin care', 'dental care']
       example: 'medicine'
 responses:
   '200':

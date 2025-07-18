@@ -780,7 +780,9 @@
                 "heart",
                 "head",
                 "hand",
-                "leg"
+                "leg",
+                "skin care",
+                "dental care"
               ],
               "example": "medicine"
             }

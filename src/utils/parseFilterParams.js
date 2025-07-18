@@ -3,7 +3,15 @@ const parseType = (type) => {
   if (!isString) return;
 
   const isType = (type) =>
-    ['medicine', 'heart', 'head', 'hand', 'leg'].includes(type.toLowerCase());
+    [
+      'medicine',
+      'heart',
+      'head',
+      'hand',
+      'leg',
+      'skin care',
+      'dental care',
+    ].includes(type.toLowerCase());
 
   if (isType(type)) return type;
 };
