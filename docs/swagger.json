@@ -819,7 +819,9 @@
                         "suppliers",
                         "stock",
                         "price",
-                        "category"
+                        "category",
+                        "description",
+                        "reviews"
                       ],
                       "properties": {
                         "_id": {
@@ -861,6 +863,16 @@
                           "description": "Drug category",
                           "type": "string",
                           "example": "Hand"
+                        },
+                        "description": {
+                          "description": "Product description",
+                          "type": "string",
+                          "example": "An anticoagulant that blocks vitamin K-dependent synthesis of blood clotting factors."
+                        },
+                        "reviews": {
+                          "description": "Product reviews",
+                          "type": "array",
+                          "example": []
                         }
                       }
                     },

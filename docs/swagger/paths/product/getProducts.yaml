@@ -68,6 +68,8 @@ responses:
                 - stock
                 - price
                 - category
+                - description
+                - reviews
               properties:
                 _id:
                   description: 'drug id in mongo'
@@ -101,6 +103,14 @@ responses:
                   description: 'Drug category'
                   type: string
                   example: 'Hand'
+                description:
+                  description: 'Product description'
+                  type: string
+                  example: 'An anticoagulant that blocks vitamin K-dependent synthesis of blood clotting factors.'
+                reviews:
+                  description: 'Product reviews'
+                  type: array
+                  example: []
             page:
               type: number
               example: 1
