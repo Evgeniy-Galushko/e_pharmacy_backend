@@ -1202,6 +1202,14 @@
               "type": "string"
             },
             "example": "6862a94b11bab2fbbf9eb836"
+          },
+          {
+            "in": "query",
+            "name": "quantity",
+            "schema": {
+              "type": "number"
+            },
+            "example": 2
           }
         ],
         "responses": {
@@ -1236,7 +1244,8 @@
                         "stock",
                         "price",
                         "category",
-                        "userId"
+                        "userId",
+                        "quantity"
                       ],
                       "properties": {
                         "_id": {
@@ -1283,6 +1292,11 @@
                           "description": "User id",
                           "type": "string",
                           "example": "686bc6852d7d10d847b2e9e9"
+                        },
+                        "quantity": {
+                          "description": "quantity of goods",
+                          "type": "number",
+                          "example": 2
                         }
                       }
                     }

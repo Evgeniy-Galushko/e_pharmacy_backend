@@ -11,6 +11,7 @@ const basketSchema = new Schema(
     price: { type: String, required: true },
     category: { type: String, required: true },
     userId: { type: Schema.Types.ObjectId, ref: 'users' },
+    quantity: { type: Number, required: true },
   },
   {
     timestamps: true,

@@ -11,6 +11,11 @@ parameters:
     schema:
       type: string
     example: '6862a94b11bab2fbbf9eb836'
+  - in: query
+    name: quantity
+    schema:
+      type: number
+    example: 2
 responses:
   '200':
     description: 'List of items in the cart'
@@ -41,6 +46,7 @@ responses:
                 - price
                 - category
                 - userId
+                - quantity
               properties:
                 _id:
                   description: 'drug id in mongo'
@@ -78,6 +84,10 @@ responses:
                   description: 'User id'
                   type: string
                   example: '686bc6852d7d10d847b2e9e9'
+                quantity:
+                  description: 'quantity of goods'
+                  type: number
+                  example: 2
   '401':
     description: Missing header with authorization token.
     content:

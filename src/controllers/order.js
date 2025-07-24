@@ -17,8 +17,9 @@ export const listOfBasketController = async (req, res) => {
 
 export const updateBasketController = async (req, res) => {
   const token = req.headers.authorization.split(' ')[1];
-  const { id } = req.query;
-  const basket = await updateBasket(token, id, {
+  console.log(req.query);
+  const { id, quantity } = req.query;
+  const basket = await updateBasket(token, id, quantity, {
     upsert: true,
   });
 

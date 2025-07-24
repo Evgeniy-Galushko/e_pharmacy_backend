@@ -12,7 +12,7 @@ export const listOfBasket = async (token) => {
   return basket;
 };
 
-export const updateBasket = async (token, idProduct, options) => {
+export const updateBasket = async (token, idProduct, quantity, options) => {
   const session = await SessionsCollection.findOne({ accessToken: token });
 
   const product = await ProductsCollection.findOne({ _id: idProduct });
@@ -34,6 +34,7 @@ export const updateBasket = async (token, idProduct, options) => {
     const basket = await BasketCollection.create({
       ...product.toObject(),
       userId: userId,
+      quantity: quantity,
     });
     return basket;
   }
