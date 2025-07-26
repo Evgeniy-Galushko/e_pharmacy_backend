@@ -1,4 +1,6 @@
+import createHttpError from 'http-errors';
 import {
+  deleteProduct,
   listOfBasket,
   orderProcessing,
   updateBasket,
@@ -40,4 +42,18 @@ export const orderProcessingController = async (req, res) => {
     message: 'Your order has been accepted!',
     data: order,
   });
+};
+
+export const productRemovalController = async (req, res, next) => {
+  const { id } = req.params;
+  const token = req.headers.authorization.split(' ')[1];
+
+  const result = await deleteProduct(token, id);
+
+  if (!result) {
+    next(createHttpError(404, 'No such entry found!'));
+    return;
+  }
+
+  res.status(204).send();
 };

@@ -53,6 +53,9 @@ paths:
   /api/cart/checkout:
     post:
       $ref: ../docs/swagger/paths/order/postOrderProcessing.yaml
+  /api/cart/remove/{id}:
+    delete:
+      $ref: ../docs/swagger/paths/order/deleteProduct.yaml
 components:
   securitySchemes:
     bearerAuth:

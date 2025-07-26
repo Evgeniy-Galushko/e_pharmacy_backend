@@ -52,3 +52,15 @@ export const orderProcessing = async (payload, token) => {
 
   return order;
 };
+
+export const deleteProduct = async (token, productId) => {
+  const session = await SessionsCollection.findOne({ accessToken: token });
+  const userId = session.userId;
+
+  const product = await BasketCollection.findOneAndDelete({
+    userId: userId,
+    _id: productId,
+  });
+  // console.log(product);
+  return product;
+};

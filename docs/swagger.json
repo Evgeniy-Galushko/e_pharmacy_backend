@@ -1557,6 +1557,74 @@
           }
         }
       }
+    },
+    "/api/cart/remove/{id}": {
+      "delete": {
+        "tags": [
+          "Order"
+        ],
+        "summary": "Deleting a product",
+        "operationId": "deleteProductId",
+        "description": " Deleting a product",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "6862a94b11bab2fbbf9eb825"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Deleting a product"
+          },
+          "404": {
+            "description": "NotFoundError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ],
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 404
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "NotFoundError"
+                    },
+                    "data": {
+                      "type": "object",
+                      "required": [
+                        "message"
+                      ],
+                      "properties": {
+                        "message": {
+                          "type": "string",
+                          "example": "No such entry found!"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
