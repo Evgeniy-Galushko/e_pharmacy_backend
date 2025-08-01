@@ -17,6 +17,8 @@ export const updateBasket = async (token, idProduct, quantity, options) => {
 
   const product = await ProductsCollection.findOne({ _id: idProduct });
 
+  console.log(product);
+
   if (!product) {
     throw createHttpError(404, 'There is no such product');
   }
@@ -26,10 +28,33 @@ export const updateBasket = async (token, idProduct, quantity, options) => {
     userId,
     _id: idProduct,
   });
+  // console.log(parseInt(quantity));
+
+  // console.log(availabilityInCart);
 
   if (availabilityInCart) {
-    throw createHttpError(404, 'Product added to cart');
+    if (
+      availabilityInCart.quantity + parseInt(quantity) >
+      parseInt(availabilityInCart.stock)
+    ) {
+      throw createHttpError(
+        404,
+        'The quantity of ordered goods exceeds the quantity in stock!',
+      );
+    }
+
+    const basket = await BasketCollection.findOneAndUpdate(
+      {
+        _id: idProduct,
+        userId: userId,
+      },
+      { $set: { quantity: availabilityInCart.quantity + parseInt(quantity) } },
+      { new: true },
+    );
+    console.log(basket);
+    return basket;
   }
+
   if (!availabilityInCart) {
     const basket = await BasketCollection.create({
       ...product.toObject(),
