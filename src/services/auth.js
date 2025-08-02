@@ -3,7 +3,7 @@ import bcrypt from 'bcrypt';
 import { randomBytes } from 'crypto';
 import { UsersCollection } from '../db/models/user.js';
 import { SessionsCollection } from '../db/models/session.js';
-import { ONE_DAY } from '../constants/index.js';
+import { THIRTY_DAYS } from '../constants/index.js';
 
 export const registerUser = async (payload) => {
   const user = await UsersCollection.findOne({ email: payload.email });
@@ -30,7 +30,7 @@ export const registerUser = async (payload) => {
     userId: newUser._id,
     phoneNumber: newUser.phoneNumber,
     accessToken,
-    accessTokenValidUntil: new Date(Date.now() + ONE_DAY),
+    accessTokenValidUntil: new Date(Date.now() + THIRTY_DAYS),
   });
 };
 
@@ -62,7 +62,7 @@ export const loginUser = async (payload) => {
     userId: user._id,
     phoneNumber: user.phoneNumber,
     accessToken,
-    accessTokenValidUntil: new Date(Date.now() + ONE_DAY),
+    accessTokenValidUntil: new Date(Date.now() + THIRTY_DAYS),
   });
 };
 

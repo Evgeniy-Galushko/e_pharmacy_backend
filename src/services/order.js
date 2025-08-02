@@ -17,8 +17,6 @@ export const updateBasket = async (token, idProduct, quantity, options) => {
 
   const product = await ProductsCollection.findOne({ _id: idProduct });
 
-  console.log(product);
-
   if (!product) {
     throw createHttpError(404, 'There is no such product');
   }
@@ -28,9 +26,6 @@ export const updateBasket = async (token, idProduct, quantity, options) => {
     userId,
     _id: idProduct,
   });
-  // console.log(parseInt(quantity));
-
-  // console.log(availabilityInCart);
 
   if (availabilityInCart) {
     if (
